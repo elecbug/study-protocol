@@ -63,13 +63,13 @@ namespace HelloTCP
 
             IPEndPoint ip = new IPEndPoint(new IPAddress(new byte[] { 127, 0, 0, 1 }), 45678);
 
-            time[i++] = DateTime.Now;
-
             byte[] buffer = Encoding.UTF8.GetBytes("Hello, world!");
             int count = 0;
 
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             socket.Bind(ip);
+            
+            time[i++] = DateTime.Now;
 
             object locker = new object();
             bool send_while = true;
@@ -99,12 +99,13 @@ namespace HelloTCP
                 lock (locker) { send_while = false; }
             });
 
-            time[i++] = DateTime.Now;
 
             send.Start();
             recv.Start();
 
             recv.Join();
+
+            time[i++] = DateTime.Now;
 
             socket.Close();
 
@@ -134,10 +135,10 @@ namespace HelloTCP
             listener.Start();
             await client.ConnectAsync(ip);
 
-            time[i++] = DateTime.Now;
-
             NetworkStream stream = client.GetStream();
             byte[] buffer = Encoding.UTF8.GetBytes("Hello, world!");
+
+            time[i++] = DateTime.Now;
 
             Thread send = new Thread(() =>
             {
