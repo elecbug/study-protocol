@@ -139,11 +139,27 @@ namespace HelloTCP
             NetworkStream stream = client.GetStream();
             byte[] buffer = Encoding.UTF8.GetBytes("Hello, world!");
 
-            for (int idx = 0; idx < 100; idx++)
+            Thread send = new Thread(() =>
             {
-                stream.Write(buffer);
-            }
-            await stream.FlushAsync();
+                for (int idx = 0; idx < 10; idx++)
+                {
+                    stream.WriteAsync(buffer);
+                }
+            });
+            
+            Thread recv = new Thread(() =>
+            {
+                for (int idx = 0; idx < 10; idx++)
+                {
+                    stream.ReadAsync(buffer);
+                }
+            });
+
+            recv.Start();
+            send.Start();
+
+            send.Join();
+            recv.Join();
 
             time[i++] = DateTime.Now;
 
