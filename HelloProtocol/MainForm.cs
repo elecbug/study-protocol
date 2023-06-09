@@ -113,11 +113,11 @@ namespace HelloTCP
 
             this.grid.Rows.Add("UDP",
                                $"{time[0].ToString("HH:mm:ss")}",
-                               $"{(time[1].Ticks - time[0].Ticks) / 1000.0} ms",
-                               $"{(time[2].Ticks - time[1].Ticks) / 1000.0} ms",
-                               $"{(time[3].Ticks - time[2].Ticks) / 1000.0} ms",
-                               $"{((count - 10)  / (double)count * 100).ToString("00.00")}%",
-                               $"{(time[3].Ticks - time[0].Ticks) / 1000.0} ms");
+                               $"{(time[1].Ticks - time[0].Ticks) / 1000.0:000.00} ms",
+                               $"{(time[2].Ticks - time[1].Ticks) / 1000.0:000.00} ms",
+                               $"{(time[3].Ticks - time[2].Ticks) / 1000.0:000.00} ms",
+                               $"{(count - 10)  / (double)count * 100:00.00}%",
+                               $"{(time[3].Ticks - time[0].Ticks) / 1000.0:000.00} ms");
         }
 
         private async void TCPTester(object? sender, EventArgs e)
@@ -171,11 +171,11 @@ namespace HelloTCP
 
             this.grid.Rows.Add("TCP",
                                $"{time[0].ToString("HH:mm:ss")}",
-                               $"{(time[1].Ticks - time[0].Ticks) / 1000.0} ms",
-                               $"{(time[2].Ticks - time[1].Ticks) / 1000.0} ms",
-                               $"{(time[3].Ticks - time[2].Ticks) / 1000.0} ms",
-                               "0%",
-                               $"{(time[3].Ticks - time[0].Ticks) / 1000.0} ms");    
+                               $"{(time[1].Ticks - time[0].Ticks) / 1000.0:000.00} ms",
+                               $"{(time[2].Ticks - time[1].Ticks) / 1000.0:000.00} ms",
+                               $"{(time[3].Ticks - time[2].Ticks) / 1000.0:000.00} ms",
+                               "00.00%",
+                               $"{(time[3].Ticks - time[0].Ticks) / 1000.0:000.00} ms");    
         }
     }
 }
