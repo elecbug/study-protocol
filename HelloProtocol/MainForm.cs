@@ -116,7 +116,7 @@ namespace HelloTCP
                                $"{(time[1].Ticks - time[0].Ticks) / 1000.0} ms",
                                $"{(time[2].Ticks - time[1].Ticks) / 1000.0} ms",
                                $"{(time[3].Ticks - time[2].Ticks) / 1000.0} ms",
-                               $"{((count - 10)  / (double)count * 100).ToString("00.000")}%",
+                               $"{((count - 10)  / (double)count * 100).ToString("00.00")}%",
                                $"{(time[3].Ticks - time[0].Ticks) / 1000.0} ms");
         }
 
