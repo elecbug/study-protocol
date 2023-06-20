@@ -156,10 +156,9 @@ namespace HelloTCP
                 }
             });
 
-            recv.Start();
             send.Start();
+            recv.Start();
 
-            send.Join();
             recv.Join();
 
             time[i++] = DateTime.Now;
